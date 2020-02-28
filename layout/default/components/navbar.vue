@@ -1,6 +1,6 @@
 <template>
   <div class="layout-navbar">
-  navbar
+    layout-navbar
   </div>
 </template>
 
@@ -9,7 +9,3 @@
     name: "navbar"
   }
 </script>
-
-<style scoped>
-
-</style>

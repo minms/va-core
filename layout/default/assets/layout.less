@@ -1,7 +1,11 @@
 @import "variables";
+@import "mixins";
 
 /** base  */
 .default-layout {
+  height: 100%;
+  background-color: @layoutBgColor;
+
   .layout-sidebar {
     transition: width 0.28s;
     position: fixed;
@@ -11,8 +15,38 @@
     z-index: 1000;
     overflow: hidden;
 
-    background-color: @menuBg;
+    background-color: @sidebarBg;
     width: @sidebarWidth;
+
+    .el-scrollbar {
+      height: 100%;
+
+      .scrollbar-wrapper {
+        overflow-x: hidden !important;
+      }
+    }
+
+    .sidebar-item {
+      text-transform: uppercase;
+
+      a {
+        text-decoration: none;
+      }
+
+      .el-menu-item, .el-submenu__title {
+        color: @sidebarMenuFontColor;
+        background-color: @sidebarMenuBgColor;
+
+        .mix-1px(0, 0, 1, 0, @sidebarMenuBottomColor);
+      }
+
+      .el-menu-item:hover, .el-submenu__title:hover {
+        color: @sidebarMenuFontHoverColor;
+        background-color: @sidebarMenuBgHoverColor;
+
+        .mix-1px(0, 0, 1, 0, @sidebarMenuBottomHoverColor);
+      }
+    }
   }
 
   .layout-container {
