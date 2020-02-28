@@ -1,0 +1,30 @@
+@import "variables";
+
+/** base  */
+.default-layout {
+  .layout-sidebar {
+    transition: width 0.28s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow: hidden;
+
+    background-color: @menuBg;
+    width: @sidebarWidth;
+  }
+
+  .layout-container {
+    transition: margin-left .28s;
+    margin-left: @sidebarWidth;
+
+    .layout-navbar {
+
+    }
+
+    .layout-main-container {
+
+    }
+  }
+}
