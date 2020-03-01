@@ -2,6 +2,9 @@ import {getModules} from "./loadModules";
 import layouts from "../../../layout";
 import configs from "../../app-config";
 import store from "../../store";
+import path from "path"
+
+import {resolvePath} from "../../../utils";
 
 const routers = [];
 getModules().map((module) => {
@@ -32,7 +35,7 @@ export function getRoutes() {
       }
     }
     return [{
-      path: '',
+      path: '/',
       component: layout,
       children: routers
     }];
@@ -45,31 +48,36 @@ export function getRoutes() {
  * 将路由生成菜单
  */
 export function generateMenus() {
-  return [{
-    label: 'title',
-    icon: '',
-    path: '1',
-    children: [{
-      label: 'title2',
-      icon: '',
-      path: '2',
-    }, {
-      label: 'title3',
-      icon: '',
-      path: '3',
-    }]
-  },{
-    label: 'title4',
-    icon: '',
-    path: '4',
-    children: [{
-      label: 'title5',
-      icon: '',
-      path: '5',
-    }]
-  }];
+  return getMenus(routers);
 }
 
-if (!configs.customMenus) {
-  store.dispatch('app/updateMenus', generateMenus());
+function getMenus(_routes, basePath) {
+  let __r = [];
+  _routes.forEach(item => {
+    if (item.hidden) return;
+
+    let __item = {
+      label: item.meta.title,
+      icon: item.meta.icon,
+      path: resolvePath(item.path, basePath),
+    };
+
+    if (item.children) {
+      let __children = getMenus(__item.children);
+      if (__children && __children.length > 0) {
+        __item.children = __children;
+      }
+    }
+
+    __r.push(__item);
+  });
+
+  return __r;
+}
+
+/** 处理系统菜单 */
+if (configs.customMenu === false) {
+  store.dispatch('vaLayout/updateMenus', generateMenus());
+} else if (typeof configs.customMenu === 'object') {
+  store.dispatch('vaLayout/updateMenus', configs.customMenu);
 }

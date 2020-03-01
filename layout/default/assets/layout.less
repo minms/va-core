@@ -3,6 +3,11 @@
 
 /** base  */
 .default-layout {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-size: 14px;
   height: 100%;
   background-color: @layoutBgColor;
 
@@ -24,27 +29,55 @@
       .scrollbar-wrapper {
         overflow-x: hidden !important;
       }
+
+      .el-menu {
+        border-right: none;
+      }
     }
 
     .sidebar-item {
-      text-transform: uppercase;
+      //text-transform: uppercase;
 
       a {
         text-decoration: none;
       }
 
+      .icon {
+        margin-right: 5px;
+        width: 1em;
+        height: 1em;
+      }
+
+      /** 菜单背景色&字体颜色 */
+
       .el-menu-item, .el-submenu__title {
         color: @sidebarMenuFontColor;
         background-color: @sidebarMenuBgColor;
-
-        .mix-1px(0, 0, 1, 0, @sidebarMenuBottomColor);
       }
 
       .el-menu-item:hover, .el-submenu__title:hover {
         color: @sidebarMenuFontHoverColor;
         background-color: @sidebarMenuBgHoverColor;
+      }
 
-        .mix-1px(0, 0, 1, 0, @sidebarMenuBottomHoverColor);
+      .el-menu-item.is-active {
+        color: @sidebarActiveFontColor;
+      }
+    }
+
+    /** 子菜单打开时, 子菜单背景色 */
+
+    .el-submenu.is-opened {
+      .el-menu {
+        .el-menu-item {
+          background-color: @sidebarSubMenuBgColor;
+
+          /** 子菜单hover背景色 */
+
+          &:hover {
+            background-color: @sidebarSubMenuBgHoverColor;
+          }
+        }
       }
     }
   }
@@ -54,11 +87,73 @@
     margin-left: @sidebarWidth;
 
     .layout-navbar {
+      height: @navbarHeight;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
 
+      .hamburger-container {
+        line-height: @navbarHeight;
+        height: 100%;
+        float: left;
+        cursor: pointer;
+        transition: background .3s;
+        -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+          background: rgba(0, 0, 0, .025)
+        }
+
+        .hamburger {
+          display: inline-block;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          transform: rotate(180deg);
+
+          &.is-active {
+            transform: rotate(0deg);
+          }
+        }
+      }
+
+      .app-breadcrumb.el-breadcrumb {
+        display: inline-block;
+        font-size: 14px;
+        line-height: @navbarHeight;
+        margin-left: 8px;
+
+        .no-redirect {
+          color: #97a8be;
+          cursor: text;
+        }
+      }
     }
 
     .layout-main-container {
+      padding: 20px;
+    }
+  }
 
+
+  &.collapse {
+    .layout-sidebar {
+      width: @sidebarCollapseWidth;
+
+      .root {
+        .label {
+          display: none;
+        }
+
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+
+    .layout-container {
+      margin-left: @sidebarCollapseWidth;
     }
   }
 }

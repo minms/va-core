@@ -5,6 +5,9 @@ export const defaultSetting = {
   title: 'Vue Element Admin',
   storagePrefix: 'va-',
   baseApi: '',
+
+  /** 是否自定义菜单 */
+  customMenu: false,
 };
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext

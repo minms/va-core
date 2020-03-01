@@ -1,7 +1,10 @@
 <template>
   <div class="layout-sidebar">
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu default-active="2">
+      <el-menu default-active="2"
+               :default-active="activeMenu"
+               :collapse="collapse"
+               :collapse-transition="false">
         <navbar-item v-for="(menu, index) in menus" :key="index" :menu="menu"/>
       </el-menu>
     </el-scrollbar>
@@ -32,7 +35,8 @@
         return path
       },
       ...mapState({
-        menus: state => state.app.menus
+        menus: state => state.vaLayout.menus,
+        collapse: state => state.vaLayout.collapse
       })
     },
     methods: {}

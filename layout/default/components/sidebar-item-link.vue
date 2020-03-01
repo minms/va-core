@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import {isExternal} from "../../../utils";
+
   export default {
     props: {
       to: {
@@ -14,7 +16,7 @@
     },
     methods: {
       linkProps(url) {
-        if (this.isExternal(url)) {
+        if (isExternal(url)) {
           return {
             is: 'a',
             href: url,
@@ -26,9 +28,6 @@
           is: 'router-link',
           to: url
         }
-      },
-      isExternal(path) {
-        return /^(https?:|mailto:|tel:)/.test(path)
       }
     }
   }
