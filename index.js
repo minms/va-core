@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import {store, router} from "./plugins";
+import {store, router, http} from "./plugins";
 Vue.prototype.productionTip = true;
 
 
@@ -12,3 +12,4 @@ export default new Vue({
 }).$mount('#app')
 
 export const VaStore = store
+export const VaHttp = http

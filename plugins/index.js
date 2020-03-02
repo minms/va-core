@@ -4,9 +4,10 @@ import Va from './va'
 
 import "./element-ui"
 import "./app-config"
-import "./http"
+import HttpService from "./http"
 
 Va.start();
 
 export const store = VueStore;
 export const router = VueRouter;
+export const http = HttpService;
