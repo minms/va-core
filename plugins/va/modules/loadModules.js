@@ -1,3 +1,5 @@
+import configs from "../../app-config";
+
 /**
  * 动态加载模块
  * @type {never}
@@ -7,6 +9,9 @@ const loadModules = require.context('@/modules', true, /\/(.*)\/index\.js$/)
 loadModules.keys().reduce((module, modulePath) => {
   const value = loadModules(modulePath);
   const moduleName = modulePath.replace(/^\.\/(.*)\/index\.js$/, '$1');
+  if (configs.disableModules.includes(moduleName)) {
+    return;
+  }
   _modules.push(
     Object.assign(
       {
