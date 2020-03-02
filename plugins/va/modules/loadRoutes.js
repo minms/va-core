@@ -63,7 +63,7 @@ function getMenus(_routes, basePath) {
     };
 
     if (item.children) {
-      let __children = getMenus(__item.children);
+      let __children = getMenus(item.children, __item.path);
       if (__children && __children.length > 0) {
         __item.children = __children;
       }
