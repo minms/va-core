@@ -8,3 +8,5 @@ export default new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+export const VaStore = store

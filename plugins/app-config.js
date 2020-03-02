@@ -21,7 +21,4 @@ const appSetting = appSettingFiles.keys().reduce((appSetting, file) => {
 const configs = Object.assign(defaultSetting, appSetting);
 Vue.prototype.$config = configs;
 
-console.log(configs)
-
-
 export default configs;

@@ -4,6 +4,7 @@ import Va from './va'
 
 import "./element-ui"
 import "./app-config"
+import "./http"
 
 Va.start();
 
