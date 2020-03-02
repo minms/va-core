@@ -2,7 +2,8 @@ export default {
   namespaced: true,
   state: {
     collapse: false,
-    menus: []
+    menus: [],
+    topMenus: []
   },
   mutations: {
     TOGGLE_SIDEBAR(state, status) {
@@ -10,6 +11,9 @@ export default {
     },
     UPDATE_MENUS(state, menus) {
       state.menus = menus;
+    },
+    ADD_TOP_MENUS(state, menu) {
+      state.topMenus.push(menu);
     }
   },
   actions: {
@@ -18,6 +22,9 @@ export default {
     },
     updateMenus({commit}, payload) {
       commit('UPDATE_MENUS', payload);
+    },
+    addTopMenus({commit}, payload) {
+      commit('ADD_TOP_MENUS', payload);
     }
   }
 }
