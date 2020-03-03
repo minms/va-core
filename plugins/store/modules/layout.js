@@ -1,7 +1,15 @@
+function getCollapseStatus() {
+  return localStorage.getItem('vaLayout.collapse') || false;
+}
+
+function updateCollapseStatus(status) {
+  localStorage.setItem('vaLayout.collapse', status)
+}
+
 export default {
   namespaced: true,
   state: {
-    collapse: false,
+    collapse: getCollapseStatus(),
     menus: [],
     topMenus: []
   },
@@ -9,9 +17,11 @@ export default {
     TOGGLE_SIDEBAR(state, status = null) {
       if (status !== null) {
         state.collapse = status;
+        updateCollapseStatus(status);
         return;
       }
       state.collapse = !state.collapse;
+      updateCollapseStatus(state.collapse);
     },
     UPDATE_MENUS(state, menus) {
       state.menus = menus;
