@@ -3,7 +3,7 @@
     <navbar-hamburger v-if="hamburger" class="hamburger-container"/>
     <navbar-breadcrumb class="breadcrumb-container"/>
     <el-menu class="top-menus">
-      <el-menu-item :index="menu.label" v-for="menu in topMenus" @click="handleClick(menu)">
+      <el-menu-item :index="menu.label" v-for="(menu, index) in topMenus" @click="handleClick(menu)" :key="index">
         {{ menu.label }}
       </el-menu-item>
     </el-menu>
