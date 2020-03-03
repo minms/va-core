@@ -6,7 +6,11 @@ export default {
     topMenus: []
   },
   mutations: {
-    TOGGLE_SIDEBAR(state, status) {
+    TOGGLE_SIDEBAR(state, status = null) {
+      if (status !== null) {
+        state.collapse = status;
+        return;
+      }
       state.collapse = !state.collapse;
     },
     UPDATE_MENUS(state, menus) {
@@ -17,8 +21,8 @@ export default {
     }
   },
   actions: {
-    toggleSideBar({commit}) {
-      commit('TOGGLE_SIDEBAR');
+    toggleSideBar({commit}, status) {
+      commit('TOGGLE_SIDEBAR', status);
     },
     updateMenus({commit}, payload) {
       commit('UPDATE_MENUS', payload);
