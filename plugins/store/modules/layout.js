@@ -1,5 +1,5 @@
 function getCollapseStatus() {
-  return localStorage.getItem('vaLayout.collapse') || false;
+  return localStorage.getItem('vaLayout.collapse') === "true" || false;
 }
 
 function updateCollapseStatus(status) {
