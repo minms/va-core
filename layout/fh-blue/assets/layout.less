@@ -1,0 +1,247 @@
+@import "variables";
+@import "mixins";
+
+/** base  */
+.fh-blue-layout {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  background-color: @layoutBgColor;
+
+  .layout-sidebar {
+    transition: width 0.28s;
+    position: fixed;
+    top: @navbarHeight;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow: hidden;
+    padding: 10px;
+
+    width: @sidebarWidth - 10px * 2;
+    background-color: @sidebarLayoutBg;
+
+    .el-scrollbar {
+      height: 100%;
+      background-color: @sidebarBg;
+
+      .scrollbar-wrapper {
+        overflow-x: hidden !important;
+      }
+
+      .el-menu {
+        border-right: none;
+      }
+    }
+
+    .sidebar-item {
+      //text-transform: uppercase;
+
+      a {
+        text-decoration: none;
+      }
+
+      .icon {
+        margin-right: 5px;
+        width: 1em;
+        height: 1em;
+      }
+
+      /** 菜单背景色&字体颜色 */
+
+      .el-menu-item, .el-submenu__title {
+        color: @sidebarMenuFontColor;
+        background-color: @sidebarMenuBgColor;
+        height: @sidebarItemHeight;
+        line-height: @sidebarItemHeight;
+      }
+
+      .el-menu-item:hover, .el-submenu__title:hover {
+        color: @sidebarMenuFontHoverColor;
+        background-color: @sidebarMenuBgHoverColor;
+
+        .el-submenu__icon-arrow {
+          color: @sidebarMenuFontHoverColor;
+        }
+      }
+
+      .el-menu-item.is-active {
+        color: @sidebarActiveFontColor;
+        background-color: @sidebarActiveBgColor;
+      }
+
+      .el-submenu, .el-submenu.is-opened {
+        .el-menu-item {
+          color: @sidebarMenuFontColor;
+          background-color: @sidebarActiveBgColor;
+
+          &:hover {
+            color: @sidebarMenuFontHoverColor;
+          }
+
+          &.is-active {
+            color: @sidebarActiveFontColor;
+            background-color: @sidebarActiveBgColor;
+          }
+        }
+      }
+    }
+
+    /** 子菜单打开时, 子菜单背景色 */
+
+    .el-submenu.is-opened {
+      .el-menu {
+        .el-menu-item {
+          background-color: @sidebarSubMenuBgColor;
+
+          /** 子菜单hover背景色 */
+
+          &:hover {
+            background-color: @sidebarSubMenuBgHoverColor;
+          }
+        }
+      }
+    }
+  }
+
+  .layout-container {
+    transition: margin-left .28s;
+    margin-left: 0;
+
+    .layout-navbar {
+      height: @navbarHeight;
+      overflow: hidden;
+      position: relative;
+      background: @navbarLayoutBgColor;
+      box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+
+      .navbar-logo {
+        width: @sidebarWidth;
+        height: @navbarHeight;
+        border: none;
+        float: left;
+      }
+
+      .hamburger-container {
+        line-height: @navbarHeight;
+        height: 100%;
+        float: left;
+        cursor: pointer;
+        transition: background .3s;
+        -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+          background: rgba(0, 0, 0, .025)
+        }
+
+        .hamburger {
+          display: inline-block;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          transform: rotate(180deg);
+
+          &.is-active {
+            transform: rotate(0deg);
+          }
+
+          fill: @navbarLayoutFontColor;
+        }
+      }
+
+      .app-breadcrumb.el-breadcrumb {
+        display: inline-block;
+        font-size: 14px;
+        line-height: @navbarHeight;
+        margin-left: 8px;
+
+        .no-redirect {
+          color: #ddd;
+          cursor: text;
+        }
+
+        .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+          color: #ccc;
+        }
+      }
+
+      .top-menus {
+        float: right;
+        background-color: @navbarLayoutBgColor;
+
+        .el-menu-item {
+          color: @navbarLayoutFontColor;
+
+          &:hover {
+            color: @navbarLayoutBgColor;
+          }
+        }
+      }
+    }
+
+    .layout-main-container {
+      transition: margin-left .28s;
+      margin-left: @sidebarWidth;
+      padding: 20px;
+    }
+  }
+
+
+  &.collapse {
+    .layout-sidebar {
+      width: @sidebarCollapseWidth;
+
+      .root {
+        .label {
+          display: none;
+        }
+
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+
+    .layout-container {
+      .layout-main-container {
+        /** 这里有个sidebar layout padding:10px; 所以需要增加20px */
+        margin-left: @sidebarCollapseWidth + 20px;
+      }
+    }
+  }
+}
+
+.fh-blue-sidebar-poper {
+  .sidebar-item:not(:last-child) {
+    .el-menu-item {
+      .mix-1px(0, 0, 1, 0, @sidebarLayoutBg);
+    }
+  }
+
+  .el-menu-item, .el-submenu__title {
+    color: @sidebarMenuFontColor;
+    background-color: @sidebarMenuBgColor;
+    height: @sidebarItemHeight;
+    line-height: @sidebarItemHeight;
+  }
+
+  .el-menu-item:hover, .el-submenu__title:hover {
+    color: @sidebarMenuFontHoverColor;
+    background-color: @sidebarMenuBgHoverColor;
+
+    .el-submenu__icon-arrow {
+      color: @sidebarMenuFontHoverColor;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  span.icon {
+    margin-right: 10px;
+  }
+}
