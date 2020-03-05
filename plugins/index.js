@@ -4,7 +4,7 @@ import Va from './va'
 
 import "./element-ui"
 import "./app-config"
-import HttpService from "./http"
+import * as HttpService from "./http"
 
 Va.start();
 
