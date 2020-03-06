@@ -4,11 +4,11 @@
       <sidebar/>
       <div class="layout-container">
         <navbar/>
-        <el-scrollbar wrap-class="layout-main-container" :noresize="true">
+        <div class="layout-main-container">
           <transition name="fade-transform" mode="out-in">
             <router-view/>
           </transition>
-        </el-scrollbar>
+        </div>
       </div>
     </template>
     <router-view v-else/>
