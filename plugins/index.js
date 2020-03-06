@@ -5,6 +5,7 @@ import Va from './va'
 import "./element-ui"
 import "./app-config"
 import * as HttpService from "./http"
+import "./va/checkPermission"
 
 Va.start();
 

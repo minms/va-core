@@ -7,6 +7,9 @@ export const defaultSetting = {
   baseApi: '',
   disableModules: [],
 
+  /** 是否启动权限检测 */
+  permission: true,
+
   /** 是否自定义菜单 */
   customMenu: false,
 };

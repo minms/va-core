@@ -4,7 +4,6 @@ import App from './App.vue'
 import {store, router, http} from "./plugins";
 Vue.prototype.productionTip = true;
 
-
 export default new Vue({
   router,
   store,
