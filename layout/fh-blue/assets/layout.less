@@ -1,12 +1,13 @@
 @import "variables";
 @import "mixins";
 
-html,body{
+html, body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   font-size: 14px;
+  background-color: @layoutBgColor;
 }
 
 /** base  */
@@ -122,7 +123,9 @@ html,body{
     .layout-navbar {
       height: @navbarHeight;
       overflow: hidden;
-      position: relative;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
       background: @navbarLayoutBgColor;
       box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
 
@@ -193,7 +196,7 @@ html,body{
     .layout-main-container {
       transition: margin-left .28s;
       margin-left: @sidebarWidth;
-      padding: 20px;
+      padding: @navbarHeight+20px 20px 20px;
 
     }
   }
