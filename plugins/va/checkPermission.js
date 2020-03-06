@@ -14,7 +14,7 @@ Vue.mixin({
 
       let roles = this.$store.state.vaAccess.roles;
       let rules = this.$store.state.vaAccess.rules;
-      if(typeof key instanceof 'string'){
+      if(typeof key === 'string'){
         if(roles.includes(key)){
           return true;
         }
@@ -26,7 +26,7 @@ Vue.mixin({
         return false;
       }
 
-      if(typeof key instanceof "object"){
+      if(typeof key === "object"){
         for(let i =0; i< key.length; i++){
           let item = key[i];
           if(roles.includes(item)){
