@@ -2,7 +2,7 @@
   <div class="layout-navbar">
     <navbar-hamburger v-if="hamburger" class="hamburger-container"/>
     <navbar-breadcrumb class="breadcrumb-container"/>
-    <el-menu class="top-menus">
+    <el-menu class="top-menus" mode="horizontal">
       <el-menu-item :index="menu.label" v-for="(menu, index) in topMenus" @click="handleClick(menu)" :key="index">
         {{ menu.label }}
       </el-menu-item>

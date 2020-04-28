@@ -14,6 +14,7 @@ Vue.mixin({
 
       let roles = this.$store.state.vaAccess.roles;
       let rules = this.$store.state.vaAccess.rules;
+
       if(typeof key === 'string'){
         if(roles.includes(key)){
           return true;
