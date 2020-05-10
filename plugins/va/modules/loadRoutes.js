@@ -9,13 +9,13 @@ import {resolvePath} from "../../../utils";
 const routers = [];
 getModules().map((module) => {
   if (!module['routers']) return;
-  let moduleRouters = module['routers'];
-  if (typeof moduleRouters === Object) {
-    moduleRouters = [moduleRouters];
-  } else if (typeof moduleRouters === "function") {
-    moduleRouters = moduleRouters();
+  let _moduleRouters = module['routers'];
+  if (typeof _moduleRouters === Object) {
+    _moduleRouters = [_moduleRouters];
+  } else if (typeof _moduleRouters === "function") {
+    _moduleRouters = _moduleRouters();
   }
-  moduleRouters.map(item => {
+  _moduleRouters.map(item => {
     routers.push(item);
   })
 });
@@ -57,9 +57,10 @@ function getMenus(_routes, basePath) {
     if (item.hidden) return;
 
     let __item = {
-      label: item.meta.title,
-      icon: item.meta.icon,
+      label: item.meta ? item.meta.title : item.name,
+      icon: item.meta ? item.meta.icon : '',
       path: resolvePath(item.path, basePath),
+      rules: item.meta ? item.meta.rules : ''
     };
 
     if (item.children) {

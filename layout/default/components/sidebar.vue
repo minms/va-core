@@ -35,10 +35,45 @@
         return path
       },
       ...mapState({
-        menus: state => state.vaLayout.menus,
         collapse: state => state.vaLayout.collapse
-      })
+      }),
+      menus() {
+        let menus = this.$store.state.vaLayout.menus;
+        let result = menus
+        if (this.$config.permission) {
+          console.log('过滤菜单权限');
+          result = this.getAccessChildren(menus);
+        }
+        return result
+      }
     },
-    methods: {}
+    methods: {
+      getAccessChildren(children) {
+        let __r = [];
+        children.forEach(item => {
+          console.log('检测菜单权限: ', item.label, item.rules)
+          if (item.rules && !this._access(item.rules)) return;
+
+          let __item = {
+            label: item.label,
+            icon: item.icon,
+            path: item.path,
+            rules: item.rules
+          };
+
+          if (item.children) {
+            let __children = this.getAccessChildren(item.children);
+            if (__children && __children.length > 0) {
+              __item.children = __children;
+              __r.push(__item);
+            }
+          } else {
+            __r.push(__item);
+          }
+        });
+
+        return __r;
+      }
+    }
   }
 </script>
