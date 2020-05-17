@@ -41,7 +41,6 @@
         let menus = this.$store.state.vaLayout.menus;
         let result = menus
         if (this.$config.permission) {
-          console.log('过滤菜单权限');
           result = this.getAccessChildren(menus);
         }
         return result
@@ -51,7 +50,6 @@
       getAccessChildren(children) {
         let __r = [];
         children.forEach(item => {
-          console.log('检测菜单权限: ', item.label, item.rules)
           if (item.rules && !this._access(item.rules)) return;
 
           let __item = {
